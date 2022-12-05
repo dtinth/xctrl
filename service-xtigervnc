@@ -1,0 +1,7 @@
+#!/bin/bash -e
+
+while true
+do
+	Xtigervnc -geometry 1920x1080 -listen tcp -localhost -AlwaysShared -AcceptKeyEvents -AcceptPointerEvents -SendCutText -AcceptCutText -PasswordFile ~/.vnc/passwd :0
+	sleep 1
+done

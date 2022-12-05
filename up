@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if ! tmux has-session -t x
+then
+  tmux new-session -t x -d
+  echo "Session created"
+else
+  echo "Session already exists"
+fi
+
+# Function to create a named window if it doesn't exist yet.
+# Specify the window name and command.
+create_window() {
+  if ! tmux list-windows -t x | grep -q "$1"
+  then
+    tmux new-window -t x -n "$1" "$2"
+    echo "Window $1 created"
+  else
+    echo "Window $1 already exists"
+  fi
+}
+
+# Find the directory of the script
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo $DIR
+create_window vnc "$DIR/service-xtigervnc"
+create_window session "$DIR/service-session"

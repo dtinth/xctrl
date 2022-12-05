@@ -1,0 +1,7 @@
+#!/bin/bash -e
+
+while true
+do
+	env DISPLAY=:0 xfce4-session
+	sleep 1
+done
